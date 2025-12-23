@@ -1,16 +1,26 @@
-document.getElementById("year").textContent = new Date().getFullYear();
+// Music toggle
 const toggleBtn = document.getElementById("musicToggle");
 const music = document.getElementById("bgMusic");
 
 let isPlaying = false;
 
-toggleBtn.addEventListener("click", () => {
-  if (!isPlaying) {
-    music.play();
-    toggleBtn.textContent = "⏸ Pause Music";
-  } else {
-    music.pause();
-    toggleBtn.textContent = "🎵 Music";
+toggleBtn?.addEventListener("click", async () => {
+  try {
+    if (!isPlaying) {
+      await music.play();
+      toggleBtn.textContent = "⏸ Pause";
+    } else {
+      music.pause();
+      toggleBtn.textContent = "🎵 Music";
+    }
+    isPlaying = !isPlaying;
+  } catch (e) {
+    alert("Your browser blocked audio. Click the button again.");
   }
-  isPlaying = !isPlaying;
+});
+
+// Back to top
+const toTop = document.getElementById("toTop");
+toTop?.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 });
